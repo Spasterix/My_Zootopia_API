@@ -1,0 +1,8 @@
+# API and HTTP requests
+requests>=2.31.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Type hints support
+typing>=3.7.4.3 
