@@ -1,32 +1,10 @@
+"""
+Module for generating HTML website from animal data.
+"""
 import json
 import os
 from typing import Dict, List, Tuple, Set
-import requests
-
-API_KEY = "Copy Your API Key Here"
-API_URL = "https://api.api-ninjas.com/v1/animals"
-
-def fetch_animals_data(animal_name: str) -> List[Dict]:
-    """
-    Fetches animal data from the API-Ninjas Animals API.
-
-    Args:
-        animal_name (str): Name of the animal to search for
-
-    Returns:
-        List[Dict]: List of dictionaries containing animal data
-    """
-    try:
-        response = requests.get(
-            API_URL,
-            params={"name": animal_name},
-            headers={"X-Api-Key": API_KEY}
-        )
-        response.raise_for_status()
-        return response.json()
-    except requests.RequestException as e:
-        print(f"Error fetching data from API: {e}")
-        return []
+import data_fetcher
 
 
 def serialize_animal(animal: Dict) -> str:
@@ -279,8 +257,8 @@ def process_animals_to_html() -> Tuple[bool, str]:
         # Get animal name from user
         animal_name = input("Enter a name of an animal: ")
         
-        # Fetch animal data from API
-        animals_data = fetch_animals_data(animal_name)
+        # Fetch animal data using the data_fetcher module
+        animals_data = data_fetcher.fetch_data(animal_name)
         
         # Read template
         template_content = read_template("animals_template.html")
