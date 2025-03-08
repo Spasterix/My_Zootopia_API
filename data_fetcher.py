@@ -1,11 +1,23 @@
 """
 Module for fetching animal data from the API-Ninjas Animals API.
 """
+import os
+import sys
 import requests
 from typing import Dict, List
+from dotenv import load_dotenv
+
+# Load environment variables
+if not load_dotenv():
+    print("Error: .env file not found. Please create a .env file with your API_KEY.")
+    sys.exit(1)
 
 # API Constants
-API_KEY = "2qYo05vUXwQ7kIzQsLXiPQ==CyTuRDBQJ0ybXNUT"
+API_KEY = os.getenv('API_KEY')
+if not API_KEY:
+    print("Error: API_KEY not found in .env file. Please add API_KEY=your_api_key to your .env file.")
+    sys.exit(1)
+
 API_URL = "https://api.api-ninjas.com/v1/animals"
 
 
