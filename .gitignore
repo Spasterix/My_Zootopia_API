@@ -1,0 +1,9 @@
+# Ignoriere Python-Bytecode-Dateien
+__pycache__/
+*.py[cod]
+
+# Ignoriere Umgebungsdateien
+.env
+
+# Ignoriere Log-Dateien
+*.log
